@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
-#control "file_check" do
-#  describe file('./test/fixtures/tf_module/foobar') do
-#    it { should exist }
-#  end
-#end
+control "output_check" do
+
+
+  describe attribute("output_hello") do
+    it { should exist }
+  end
+  
+  describe attribute("output_hello") do
+    it { should eq "World" }
+  end
+  
+end
+
