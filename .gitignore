@@ -1,3 +1,10 @@
+# Gemfile
+Gemfile.lock
+
+# Kitechn internals
+.kitchen
+
+
 # Local .terraform directories
 **/.terraform/*
 

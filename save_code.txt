@@ -1,0 +1,5 @@
+resource "null_resrouce" "nothing" {}
+
+output "hello" {
+	value = "World"
+}
