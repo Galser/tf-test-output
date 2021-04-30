@@ -1,0 +1,4 @@
+---
+name: output_from_variable
+title: Kitchen-Terraform test that module has the output with value equeal to input provided
+version: 0.1.0

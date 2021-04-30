@@ -17,4 +17,13 @@ platforms:
   - name: terraform
 
 suites:
-  - name: default
+  - name: default_output
+    named_run_list: Check existence of default output
+    verifier:
+      inspec_tests:
+        - test/integration/default_output
+  - name: output_from_variable
+    named_run_list: Check output provision from variable
+    verifier:
+      inspec_tests:
+        - test/integration/output_from_variable
