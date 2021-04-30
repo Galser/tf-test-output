@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 control "output_check" do
-  title 'Module default output check'
+  title 'Module default output check, no inputs provided'
   desc 'Checks that the default output from module existing wiht default value'
 
   describe attribute("output_hello") do

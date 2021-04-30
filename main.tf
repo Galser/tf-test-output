@@ -1,11 +1,6 @@
-#resource "null_resource" "create_file" {
-#  provisioner "local-exec" {
-#    command = "echo 'this is my first test' > foobar"
-#  }
-#}
+# This module does nothing, and jsut defines one resource nothning
+# But have 1 output 
+# and 1 input
 
+# Null resource to have at least one resource for state 
 resource "null_resource" "nothing" {}
-
-output "hello" {
-  value = "World"
-}

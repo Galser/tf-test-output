@@ -1,11 +1,9 @@
 ---
-driver:
-  name: terraform
-  root_module_directory: test/fixtures/tf_module
-  parallelism: 4
-
 provisioner:
   name: terraform
+
+platforms:
+  - name: terraform
 
 verifier:
   name: terraform
@@ -13,17 +11,21 @@ verifier:
     - name: basic
       backend: local
 
-platforms:
-  - name: terraform
+driver:
+  name: terraform
+  parallelism: 4
 
 suites:
   - name: default_output
     named_run_list: Check existence of default output
-    verifier:
-      inspec_tests:
-        - test/integration/default_output
+    root_module_directory: test/fixtures/tf_module
+    inspec_tests:
+      - test/integration/default_output
   - name: output_from_variable
     named_run_list: Check output provision from variable
-    verifier:
-      inspec_tests:
-        - test/integration/output_from_variable
+    root_module_directory: test/fixtures/tf_module_with_input
+    driver:
+        variables:
+          test_var: "Holly" 
+    inspec_tests:
+      - test/integration/output_from_variable

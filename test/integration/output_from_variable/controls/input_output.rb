@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 control "output_check" do
-  title 'Module default output check'
+  
+  title 'Module input-based output check'
   desc 'Checks that the default output from module existing wiht default value'
 
   describe attribute("output_hello") do
@@ -10,7 +11,7 @@ control "output_check" do
       attribute("output_hello")
     end
 
-    it { should eq attribute("test_var") }
+    it { should eq attribute("input_test_var") }
   end
   
 end
