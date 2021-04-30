@@ -90,22 +90,22 @@ bundle exec kitchen converge
 $$$$$$ Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.15.0...
 $$$$$$ Reading the Terraform client version...
        Terraform v0.14.11
-    ```
 
-    And in case of successful run the last 2 lines of output should be  like this : 
-    ```
-       Finished converging <output-from-variable-terraform> (0m1.72s).
+```
+And in case of successful run the last 2 lines of output should be  like this : 
+   Finished converging <output-from-variable-terraform> (0m1.72s).
 -----> Test Kitchen is finished. (0m6.11s)    
-    ```
+```
 
 - Now to run the test execute : 
 
-    ```
-    bundle exec kitchen verify
-    ```
+```
+bundle exec kitchen verify
+```
 
-    Output should looks like ths : 
-    ```
+Output should looks like ths : 
+
+```
  -----> Starting Test Kitchen (v2.11.2)
 -----> Setting up <default-output-terraform>...
        Finished setting up <default-output-terraform> (0m0.00s).
@@ -154,14 +154,14 @@ $$$$$$ Finished verifying the 'basic' system.
 $$$$$$ Finished verifying the systems.
        Finished verifying <output-from-variable-terraform> (0m0.57s).
 -----> Test Kitchen is finished. (0m4.20s)
-    ```
+```
     
-    And as you can see from output above - 2 test suits finished with all test successfully, no errors, no failures. And if you have color-enabled console there should be a green check marks at appropiate messages - 
+  And as you can see from output above - 2 test suits finished with all test successfully, no errors, no failures. And if you have color-enabled console there should be a green check marks at appropiate messages - 
 
-    ```
-      ✔  output_check: Module default output check, no inputs provided
-     ✔  World is expected to eq "World"
-    ```
+```
+  ✔  output_check: Module default output check, no inputs provided
+ ✔  World is expected to eq "World"
+```
 
 - To destroy the state and free up resource run 
     ```
@@ -170,13 +170,13 @@ $$$$$$ Finished verifying the systems.
     Output :
     ```
     -----> Starting Test Kitchen (v2.11.2)
------> Destroying <default-output-terraform>...
-$$$$$$ Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.15.0...
-$$$$$$ Reading the Terraform client version...
-...
-$$$$$$ Finished deleting the kitchen-terraform-output-from-variable-terraform Terraform workspace.
-       Finished destroying <output-from-variable-terraform> (0m1.84s).
------> Test Kitchen is finished. (0m4.89s)
+  -----> Destroying <default-output-terraform>...
+  $$$$$$ Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.15.0...
+  $$$$$$ Reading the Terraform client version...
+  ...
+  $$$$$$ Finished deleting the kitchen-terraform-output-from-variable-terraform Terraform workspace.
+         Finished destroying <output-from-variable-terraform> (0m1.84s).
+  -----> Test Kitchen is finished. (0m4.89s)
     ```
 
 - All of 3 step's above could be automated via running one command : 
