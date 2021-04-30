@@ -76,57 +76,109 @@ More information can be found in the
 # How to test
 
 - To prepare tests (run the VM), execute :
+
     ```
     bundle exec kitchen converge
     ```
+
     Output going to start with :
-    ```
 
     ```
-    And in case of successful run the last 2 lines of output should be : 
+bundle exec kitchen converge
+-----> Starting Test Kitchen (v2.11.2)
+-----> Creating <default-output-terraform>...
+$$$$$$ Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.15.0...
+$$$$$$ Reading the Terraform client version...
+       Terraform v0.14.11
     ```
-        Finished converging <default-bionic-nginx64> (0m0.01s).
-    -----> Kitchen is finished. (0m36.66s)
+
+    And in case of successful run the last 2 lines of output should be  like this : 
     ```
+       Finished converging <output-from-variable-terraform> (0m1.72s).
+-----> Test Kitchen is finished. (0m6.11s)    
+    ```
+
 - Now to run the test execute : 
+
     ```
     bundle exec kitchen verify
     ```
+
     Output should looks like ths : 
     ```
-    -----> Starting Kitchen (v2.3.3)
-    -----> Setting up <default-bionic-nginx64-vbox>...
-        Finished setting up <default-bionic-nginx64-vbox> (0m0.00s).
-    -----> Verifying <default-bionic-nginx64-vbox>...
-    verify_host_key: false is deprecated, use :never
-        Loaded tests from {:path=>"....kitchen-vagrant.test.integration.default"} 
+ -----> Starting Test Kitchen (v2.11.2)
+-----> Setting up <default-output-terraform>...
+       Finished setting up <default-output-terraform> (0m0.00s).
+-----> Verifying <default-output-terraform>...
+$$$$$$ Reading the Terraform input variables from the Kitchen instance state...
+$$$$$$ Finished reading the Terraform input variables from the Kitchen instance state.
+$$$$$$ Reading the Terraform output variables from the Kitchen instance state...
+$$$$$$ Finished reading the Terraform output variables from the Kitchen instance state.
+$$$$$$ Verifying the systems...
+$$$$$$ Verifying the 'basic' system...
 
-    Profile: tests from {:path=>"/.../kitchen-vagrant/test/integration/default"} (tests from {:path=>"....kitchen-vagrant.test.integration.default"})
-    Version: (not specified)
-    Target:  ssh://vagrant@127.0.0.1:2200
+Profile: Kitchen-Terraform test that module has the output with default value while not input provided (default_output)
+Version: 0.1.0
+Target:  local://
 
-    System Package nginx
-        ✔  should be installed
+  ✔  output_check: Module default output check, no inputs provided
+     ✔  World is expected to eq "World"
 
-    Test Summary: 1 successful, 0 failures, 0 skipped
-        Finished verifying <default-bionic-nginx64-vbox> (0m0.26s).
+
+Profile Summary: 1 successful control, 0 control failures, 0 controls skipped
+Test Summary: 1 successful, 0 failures, 0 skipped
+$$$$$$ Finished verifying the 'basic' system.
+$$$$$$ Finished verifying the systems.
+       Finished verifying <default-output-terraform> (0m2.53s).
+-----> Setting up <output-from-variable-terraform>...
+       Finished setting up <output-from-variable-terraform> (0m0.00s).
+-----> Verifying <output-from-variable-terraform>...
+$$$$$$ Reading the Terraform input variables from the Kitchen instance state...
+$$$$$$ Finished reading the Terraform input variables from the Kitchen instance state.
+$$$$$$ Reading the Terraform output variables from the Kitchen instance state...
+$$$$$$ Finished reading the Terraform output variables from the Kitchen instance state.
+$$$$$$ Verifying the systems...
+$$$$$$ Verifying the 'basic' system...
+
+Profile: Kitchen-Terraform test that module has the output with value equeal to input provided (output_from_variable)
+Version: 0.1.0
+Target:  local://
+
+  ✔  output_check: Module input-based output check
+     ✔  Holly is expected to eq "Holly"
+
+
+Profile Summary: 1 successful control, 0 control failures, 0 controls skipped
+Test Summary: 1 successful, 0 failures, 0 skipped
+$$$$$$ Finished verifying the 'basic' system.
+$$$$$$ Finished verifying the systems.
+       Finished verifying <output-from-variable-terraform> (0m0.57s).
+-----> Test Kitchen is finished. (0m4.20s)
     ```
-    And as you can see from output above - 1 test finished successfully, no errors, no failures. And if you have color-enabled console there should be a green check mark that 
-    System package nginx - **should be installed**, e.g. we do have Nginx installed in our box.
-- To destroy the VM and free resources, run "
+    
+    And as you can see from output above - 2 test suits finished with all test successfully, no errors, no failures. And if you have color-enabled console there should be a green check marks at appropiate messages - 
+
+    ```
+      ✔  output_check: Module default output check, no inputs provided
+     ✔  World is expected to eq "World"
+    ```
+
+- To destroy the state and free up resource run 
     ```
     bundle exec kitchen destroy
     ```
     Output :
     ```
-    -----> Starting Kitchen (v2.3.3)
-    -----> Destroying <default-bionic-nginx64-vbox>...
-        ==> default: Forcing shutdown of VM...
-        ==> default: Destroying VM and associated drives...
-        Vagrant instance <default-bionic-nginx64-vbox> destroyed.
-        Finished destroying <default-bionic-nginx64-vbox> (0m4.54s).
-    -----> Kitchen is finished. (0m6.69s)
+    -----> Starting Test Kitchen (v2.11.2)
+-----> Destroying <default-output-terraform>...
+$$$$$$ Verifying the Terraform client version is in the supported interval of >= 0.11.4, < 0.15.0...
+$$$$$$ Reading the Terraform client version...
+...
+$$$$$$ Finished deleting the kitchen-terraform-output-from-variable-terraform Terraform workspace.
+       Finished destroying <output-from-variable-terraform> (0m1.84s).
+-----> Test Kitchen is finished. (0m4.89s)
     ```
+
 - All of 3 step's above could be automated via running one command : 
     ```
     bundle exec kitchen test
