@@ -124,10 +124,7 @@ Once you have all requirements satisfied (e.g. KitchenCI and Terraform installed
 
     And as you can see from the output above - 2 test suits finished with all tests successfully, no errors, no failures. And if you have a color-enabled console there should be green check marks at appropriate messages - 
 
-    ```
-      ✔  output_check: Module default output check, no inputs provided
-     ✔  World is expected to eq "World"
-    ```
+    ![Test screenshot](check-marks.png)
 
 - To destroy the states and free up resource run 
     ```
